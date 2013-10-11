@@ -12,14 +12,20 @@ To the north is a stout wooden door with a large metal doorhandle."
 
 There is a heavy key.  The heavy key unlocks the stout door.  The description is "It is a heavy, metal key."
 
+Understand the command "read" as something new.  Understand "read [something]" as reading.  Reading is an action applying to one thing.
+
 There is a blue book. The blue book is a container.  The description is "It is a small volume of zen essays.  It feels unnatually heavy."
+Instead of reading the blue book:
+	say "The book's pages are stuck together.  Opening the cover, you see that a heavy key is sitting inside the book.";
+	move the heavy key to the book.
 Instead of opening the blue book:
 	say "The book's pages are stuck together.  Opening the cover, you see that a heavy key is sitting inside the book.";
 	move the heavy key to the book.
 
+
 The stout door is a door.  The stout door is closed and locked.  The stout door is north of the Cell and south of the Corridore.
 
-Instead of going to the Corridore:
+After going to the Corridore:
     say "You step from you cell and out into the rest of the world.";
     end the game in victory.
 
