@@ -1,0 +1,56 @@
+"Zen" by Sean Elliott
+
+The release number is 1. The story creation year is 2013. The story headline is "A short Inform 7 demonstration". The story description is "A short Interactive Fiction using Inform 7."
+
+When play begins: say "From somewhere far away a sounding gong brings your mind to wakefulness."
+
+The Cell is a room.  "The room you find yourself in is panelled with dark wood.  It is small, but not cramped.  The light is coming from a window high on the wall.  
+
+To the south is an open doorway where more light streams.  On the west wall is a large bookshelf with many volumes.  On the east wall is a small cot.
+
+To the north is a stout wooden door with a large metal doorhandle."
+
+There is a heavy key.  The heavy key unlocks the stout door.  The description is "It is a heavy, metal key."
+
+There is a blue book. The blue book is a container.  The description is "It is a small volume of zen essays.  It feels unnatually heavy."
+Instead of opening the blue book:
+	say "The book's pages are stuck together.  Opening the cover, you see that a heavy key is sitting inside the book.";
+	move the heavy key to the book.
+
+The stout door is a door.  The stout door is closed and locked.  The stout door is north of the Cell and south of the Corridore.
+
+Instead of going to the Corridore:
+    say "You step from you cell and out into the rest of the world.";
+    end the game in victory.
+
+
+The bookshelf is scenery and container in the Cell.   The description is "You look over the books.  They are a collection of paperbacks and hardcovers, but you don't immediately recognise any."
+
+Understand "books" as bookshelf.
+
+The cot is an enterable supporter in the Cell.  The description is "Your cot is small, but very comfortable."
+
+After entering the cot:
+	say "You snuggle back onto your cot.  It is very comfortable."
+
+The Courtyard is south of the Cell.  The description is "This is a small space, surrounded on all sides by tall brick walls.  High above you can see blue sky.  The ground is sand, and there are three large, round stones.  In the corner, three stalks of green bamboo grow taller than you."
+
+The rake is in the Courtyard.  The description is "It is a short, wooden rake.  The head is made up of a half-dozen, regularly spaced pegs."
+
+Understand "pegs" as rake.
+
+The sand is scenery in the Courtyard.  The description is "The sand is furrowed as if to look like rippling water.  Words come unbidden to your mind:
+
+[italic type]Drinking tea, eating rice,[line break]
+I pass my time as it comes;[line break]
+Looking down at the stream, looking up at the mountains,[line break]
+How serene and relaxed I feel indeed![roman type]
+
+You remember seeing this poem in a blue book of Zen essays."
+
+After examining the sand:
+	move the blue book to the bookshelf.
+
+
+
+
