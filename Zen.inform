@@ -1,8 +1,27 @@
 "Zen" by Sean Elliott
 
-The release number is 1. The story creation year is 2013. The story headline is "A short Inform 7 demonstration". The story description is "A short Interactive Fiction using Inform 7."
+The release number is 1. The story creation year is 2013. The story headline is "A short introduction to Inform 7.". The story description is "A short Interactive Fiction using Inform 7."
+
+
+Chapter 1 - Defining actions
+
+Understand the command "read" as something new.  Understand "read [something]" as reading.  Reading is an action applying to one thing.
+Carry out reading:
+	say "You see nothing to read there."
+
+Understand the command "rake" as something new.  Understand "rake [something]" as raking.  Raking is an action applying to one thing.  
+Carry out raking:
+	if the player does not carry the rake:
+		say "You do not have a rake.";
+	if the player does carry the rake:
+		say "Nothing results of raking [the noun]."
+
+
+Chapter 2 - The Game
 
 When play begins: say "From somewhere far away a sounding gong brings your mind to wakefulness."
+
+Section 1 - The Cell
 
 The Cell is a room.  "The room you find yourself in is panelled with dark wood.  It is small, but not cramped.  The light is coming from a window high on the wall.  
 
@@ -12,51 +31,125 @@ To the north is a stout wooden door with a large metal doorhandle."
 
 There is a heavy key.  The heavy key unlocks the stout door.  The description is "It is a heavy, metal key."
 
-Understand the command "read" as something new.  Understand "read [something]" as reading.  Reading is an action applying to one thing.
-
-There is a blue book. The blue book is a container.  The description is "It is a small volume of zen essays.  It feels unnatually heavy."
+There is a blue book.  The blue book is a container.  The description is "It is a small volume of Zen essays.  It feels unnatually heavy."
 Instead of reading the blue book:
-	say "The book's pages are stuck together.  Opening the cover, you see that a heavy key is sitting inside the book.";
-	move the heavy key to the book.
+	say "The book's pages are stuck together.";
+	if the player is not carrying the heavy key
+		begin;
+		say "Opening the cover, you see that a heavy key is sitting inside the book.";
+		move the heavy key to the book;
+		end if.
 Instead of opening the blue book:
-	say "The book's pages are stuck together.  Opening the cover, you see that a heavy key is sitting inside the book.";
-	move the heavy key to the book.
+		say "The book's pages are stuck together.";
+	if the player is not carrying the heavy key
+		begin;
+		say "Opening the cover, you see that a heavy key is sitting inside the book.";
+		move the heavy key to the book;
+		end if.
 
-
-The stout door is a door.  The stout door is closed and locked.  The stout door is north of the Cell and south of the Corridore.
+The stout door is a door.  The stout door is scenery.  The stout door is closed and locked.  The stout door is north of the Cell and south of the Corridore.
+Understand "lock" as the stout door.
 
 After going to the Corridore:
     say "You step from you cell and out into the rest of the world.";
     end the game in victory.
 
+The narrow doorway is a door.  It is scenery.  The narrow doorway is open and unlocked.  The narrow doorway is south of the Cell and north of the Courtyard.
+Instead of closing the narrow doorway:
+	say "There is no door in the doorway."
+Instead of opening the narrow doorway:
+	say "There is no door in the doorway."
 
-The bookshelf is scenery and container in the Cell.   The description is "You look over the books.  They are a collection of paperbacks and hardcovers, but you don't immediately recognise any."
+The bookshelf is scenery and container in the Cell.   The description is "You look over the books.  They are a collection of paperbacks and hardcovers."
+Understand "books", "book" as bookshelf.
+Instead of taking the bookshelf:
+	say "You look over the books but there are none you want to take at the moment."
+Instead of reading the bookshelf:
+	say "There are many volumes on the bookshelf.  You are not sure where to begin."
+Instead of examining the bookshelf:
+	say "You look over the books.  They are a collection of paperbacks and hardcovers.";
+	if the bookshelf contains the blue book,
+		say "You see your blue book of Zen essays nestled among the other volumes."
 
-Understand "books" as bookshelf.
+The cot is an enterable supporter in the Cell.  The cot is scenery. The description is "Your cot is small, but very comfortable."
+Understand "bed" as the cot.
 
-The cot is an enterable supporter in the Cell.  The description is "Your cot is small, but very comfortable."
 
 After entering the cot:
 	say "You snuggle back onto your cot.  It is very comfortable."
 
-The Courtyard is south of the Cell.  The description is "This is a small space, surrounded on all sides by tall brick walls.  High above you can see blue sky.  The ground is sand, and there are three large, round stones.  In the corner, three stalks of green bamboo grow taller than you."
+Section 2 - The Courtyard
+
+The Courtyard is a room.  The description is "This is a small space, surrounded on all sides by tall brick walls.  High above you can see blue sky.  The ground is sand, and there are three large, round stones.  In the corner, three stalks of green bamboo grow taller than you."
 
 The rake is in the Courtyard.  The description is "It is a short, wooden rake.  The head is made up of a half-dozen, regularly spaced pegs."
-
 Understand "pegs" as rake.
-
-The sand is scenery in the Courtyard.  The description is "The sand is furrowed as if to look like rippling water.  Words come unbidden to your mind:
-
-[italic type]Drinking tea, eating rice,[line break]
-I pass my time as it comes;[line break]
-Looking down at the stream, looking up at the mountains,[line break]
-How serene and relaxed I feel indeed![roman type]
-
-You remember seeing this poem in a blue book of Zen essays."
-
-After examining the sand:
-	move the blue book to the bookshelf.
+Instead of climbing the rake:
+	say "You cannot climb the rake."
 
 
+The sand is scenery in the Courtyard.  The description is "The sand is furrowed as if to look like rippling water."
+Instead of taking the sand:
+	say "You grab a handful of stand, and it trickles between your fingers back to the ground."
 
+Before raking the sand:
+	if the rake is not in the Courtyard and the player does not carry the rake
+		begin;
+			say "There is nothing to rake with.";
+			stop the action;
+		end if.
+	
+Instead of raking the sand:
+	if the rake is in the Courtyard and the the player does not carry the rake
+		begin;
+			say "(first taking the rake)";
+			move the rake to the player;
+		end if;
+	say "You slowly drag the rake around the stones, making pleasing ripples in the sand.";
+	If the player does not carry the blue book and the blue book is off-stage
+		begin;
+			say "Words come unbidden to your mind:[line break][line break]
+			[italic type]Drinking tea, eating rice,[line break]
+			I pass my time as it comes;[line break]
+			Looking down at the stream, looking up at the mountains,[line break]
+			How serene and relaxed I feel indeed![roman type][line break][line break]
+			You remember seeing this poem in the blue book of Zen essays in your bookshelf.";
+	 		move the blue book to the bookshelf;
+		end if.
+
+The stones are scenery in the Courtyard. The initial appearance is "Three large stones sit on the sand." The description is "Three large stone, smooth and flat after spending years in a stream, are placed on the sand.  They look heavy."
+Understand "stone", "rock" as the stones.
+Instead of taking the stones:
+	say "You go to remove one of the stones from the sand, but it is too heavy."
+Instead of touching the stones:
+	say "You rub your hand over the surface of one of the stones.  It feels warm."
+Instead of pushing the stones:
+	say "You push at one of the stones.  It shifts just a little on the sand."
+Instead of pulling the stones:
+	say "You pull at one of the stones.  It shifts just a little on the sand."
+Instead of turning the stones:
+	say "You attempt to turn one of the stones.  It does not move."
+Instead of climbing the stones:
+	say "You stand on one of the stones.  The smooth surface makes it hard to stay on top, so you climb back down."
+	
+The bamboo is a thing in the Courtyard. It is scenery. The description is "Three bright green stalks of bamboo frow taller than you."  
+Understand "stalk", "stalks" as the bamboo.
+Instead of taking the bamboo:
+	say "You pull at a stalk of bamboo, but it is firmly planted in the ground."
+Instead of touching the bamboo:
+	say "You rub your hand along a shaft of bamboo.  It is smooth."
+Instead of pushing the bamboo:
+	say "You push at one of the stalks of bamboo.  It bends, then straightens again."
+Instead of pulling the bamboo:
+	say "You pull one of the stalks of bamboo.  It bends towards you, then straightens as you let go."
+Instead of climbing the bamboo:
+	say "You grab a stalk of bamboo to climb, but it bends under your weight.  You let go and it straightens again."
+
+
+The walls are scenery in the Courtyard.  The description is "The walls extend high above your head.  Looking up you can see a square patch of blue sky."
+Understand "brick", "bricks", "wall" as the walls.
+Instead of climbing the walls:
+	say "You can find no handholds to climb the walls."
+Instead of pushing the walls:
+	say "You push against the walls, but they do not budge."
 
